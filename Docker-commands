@@ -1,0 +1,62 @@
+Install docker
+---------------
+
+1. windows - docker toolbox
+2. Linux   - 
+
+a) first process 
+
+yum install epel-repository
+
+yum install docker
+   pre- epel
+
+b) second process
+
+install via script
+
+https://get.docker.com/
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sh get-docker.sh
+
+--------
+
+docker
+docker --version
+docker info
+
+--------- start docker ----
+
+service docker status
+service docker start
+
+enable at BIOS level
+--------------------
+systemctl enable docker
+------------------
+----enable /force filewall to access any port---
+----------------------------------------------
+iptables -F
+
+docker images
+docker search images
+
+docker search hello-world
+
+docker pull hello-world
+
+docker images
+
+docker run <imagename>
+docker run -itd <imagename>
+
+docker ps
+
+docker ps -a
+
+docker start <container id>
+docker stop <container id>
+
+docker images

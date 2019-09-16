@@ -60,3 +60,12 @@ docker start <container id>
 docker stop <container id>
 
 docker images
+
+docker run -itd -p 80:80 tutum/hello-world
+
+goto browser
+
+ip of linux machin and hit enter
+
+192.168.134.135:80
+

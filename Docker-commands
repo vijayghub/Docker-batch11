@@ -69,3 +69,71 @@ ip of linux machin and hit enter
 
 192.168.134.135:80
 
+
+----------
+class 2
+-----------
+
+docker images
+docker pull centos
+docker run -it centos
+exit
+docker rm contid 
+
+docker run -it centos
+CTRL+P+Q
+
+docker run -itd centos
+
+docker attach contId
+exit
+or
+
+CTRL+P+q
+
+docker start contid 
+docker stop contid
+
+docker rm contid
+docker rm -f contid
+
+---- install git and clone git repo ---
+
+docker run -it centos
+yum install git -y
+git --version
+
+git clone url
+
+ctl+p+q
+
+docker commit contid
+
+docker ps
+
+
+docker tag <image id> "vijay2018/batch11" (is docker hub repo)
+
+docker images
+
+docker run -it   vijay2018/batch11
+
+docker ps
+
+docker login
+
+docker logout
+
+docker push ImageId
+
+ex: docker push vijay2018/batch11
+
+----
+docker tag imageid orgid/repo:tag
+
+docker push imageid:tag
+
+docker pull vijay2018/batch11:tag1
+
+----------------
+

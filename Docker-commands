@@ -38,6 +38,89 @@ systemctl enable docker
 ------------------
 ----enable /force filewall to access any port---
 ----------------------------------------------
+
+
+---------
+class3
+---------
+- stopeed
+docker rm cid
+
+- force
+docker rm -f cid
+
+- only for running container to kill
+docker kill cid
+
+- list only running cid
+docker ps -q
+
+docker ps -aq
+
+docker pause cid
+
+docker unpause cid
+
+- delete all containers which are not running status
+docker rm $(docker ps -aq)
+
+- delete all cid forcefully
+
+docker rm -f $(docker ps -aq)
+
+- delete images
+docker rmi imagid/name
+
+docker images -q
+
+- delet all images 
+docker rmi $(docker ps -aq)
+
+- force if any containers using the image
+docker rmi -f $(docker ps -aq)
+
+docker exec -it 5c02aa653549 /bin/bash
+exit
+-even exit container up and running
+
+- expose port
+docker run -itd -p 81:80 nginx
+
+start jenkins in docker
+---------------------
+docker pull jenkins
+
+docker run -it -p 8084:8080 jenkins
+- list all log
+- also secret key
+
+docker run -itd -p 8084:8080 jenkins
+
+--give below to force port numbers to allow
+-------------------------------------------
+iptables -F
+
+- quick
+- wont list log detiasl
+- no secret key
+
+
+---> go to browser git 192.168.134.135:8084
+
+login to continer and get secretekey
+
+docker exec -it cid /bin/bash
+ex: ex: docker exec -it 498de2191c48 /bin/bash
+
+- go to path for secret key
+cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+- enter pw and continue
+
+- install suggested plugins
+
+====================================================
 iptables -F
 
 docker images

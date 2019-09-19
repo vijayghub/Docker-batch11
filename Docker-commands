@@ -199,6 +199,39 @@ docker run -itd -p 8084:8080 jenkins
 -------------------------------------------
 iptables -F
 
+=========
+class4
+-------
+docker restart 498de2191c48
+
+name the container
+------------------
+docker run --name mycentos -itd centos
+
+1. Mounts
+---------
+
+docker run -itd /path/of/host:/conatiner/path Image name
+
+docker run -itd -v /opt/batch11:/var/common/ centos
+
+docker inspect cid
+
+- create container from existing container and copy data
+docker run -itd --volumes-from 6bdf98cb7870 centos
+
+login to contaier
+-----------------
+docker exec -it 498de2191c48 /bin/bash
+
+Note: pelase dont use docker attach cid command when container is 
+  exposed to porting. like jenkins/tomcat
+
+2.volume
+---------
+docker volum
+
+
 - quick
 - wont list log detiasl
 - no secret key

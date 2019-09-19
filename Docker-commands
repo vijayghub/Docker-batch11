@@ -199,6 +199,27 @@ docker run -itd -p 8084:8080 jenkins
 -------------------------------------------
 iptables -F
 
+- quick
+- wont list log detiasl
+- no secret key
+
+---> go to browser git 192.168.134.135:8084
+
+login to continer and get secretekey
+
+docker exec -it cid /bin/bash
+ex: ex: docker exec -it 498de2191c48 /bin/bash
+
+- go to path for secret key
+cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+- enter pw and continue
+
+- install suggested plugins
+
+====================================================
+
 =========
 class4
 -------
@@ -229,28 +250,4 @@ Note: pelase dont use docker attach cid command when container is
 
 2.volume
 ---------
-docker volum
-
-
-- quick
-- wont list log detiasl
-- no secret key
-
-
----> go to browser git 192.168.134.135:8084
-
-login to continer and get secretekey
-
-docker exec -it cid /bin/bash
-ex: ex: docker exec -it 498de2191c48 /bin/bash
-
-- go to path for secret key
-cat /var/jenkins_home/secrets/initialAdminPassword
-
-
-- enter pw and continue
-
-- install suggested plugins
-
-====================================================
-
+docker volume

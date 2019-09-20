@@ -248,6 +248,63 @@ docker exec -it 498de2191c48 /bin/bash
 Note: pelase dont use docker attach cid command when container is 
   exposed to porting. like jenkins/tomcat
 
+------------
+class 5
+-----------
 2.volume
 ---------
 docker volume
+
+docker volume create vol1
+docker volume ls
+
+- create container for jenkins using volume vol1
+
+docker run --name myjenkins1 -v vol1:/var/jenkins_home -p 
+
+8055:8080 -p 50000:50000 -itd jenkins
+
+---------------------------
+
+dockerfile
+----------
+
+----------------------------------------
+FROM centos
+MAINTAINER vijay2018 <vijay2018@gmail.com>
+RUN yum update -y
+RUN yum install git -y
+RUN echo "Hello welcome to devops" >> /opt/testfile1
+RUN yum install java -y
+RUN yum install wget -y
+RUN mkdir /opt/mvn
+RUN cd /opt/mvn && wget 
+
+http://mirrors.estointernet.in/apache/maven/maven-
+
+3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz
+RUN cd /opt/mvn && tar -xvf /opt/mvn/apache-maven-3.6.2-
+
+bin.tar.gz
+RUN export M2_HOME=/opt/mvn/apache-maven-3.6.2
+RUN export PATH=${M2_HOME}/bin:${PATH}
+
+----------------------------------------
+- provide instruction for creating image
+
+- name should be always dockerfile
+
+- build image
+
+docker build -t "centos:base" .
+
+- create container 
+
+docker run -it centos:base
+
+- check history of image
+docker history centos
+
+- check container logs
+docker logs cid
+ex:docker logs a34d07c7dbc6

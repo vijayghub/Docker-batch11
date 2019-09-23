@@ -308,3 +308,144 @@ docker history centos
 - check container logs
 docker logs cid
 ex:docker logs a34d07c7dbc6
+
+
+
+
+===========
+class 6
+============
+dockerfile
+----------------------------------------
+FROM ubuntu:16.04
+
+LABEL company="docker static website" \
+      maintainer="Vijay" \
+      Location="Banglore" \
+      Version="0.0.1"
+
+RUN apt-get update -y
+# httpd is the package name for apache in Linux
+# apache2 is the package name for apache in Ubuntu
+RUN apt-get install apache2 -y
+RUN apt-get install wget -y
+
+RUN apt-get install unzip -y
+
+# Create tmp file inside the docker image and set work directory
+WORKDIR /tmp
+
+RUN wget https://github.com/vijayghub/Static-Website/archive/master.zip
+
+RUN unzip master.zip
+
+# Apache deployment directory is /var/www/html
+
+RUN cp -r Static-Website-master/* /var/www/html
+
+EXPOSE 80
+
+# CMD is runtime instruction, is excuted when we run container
+CMD ["apachectl","-D", "FOREGROUND"]
+
+-----------------------------------------
+
+- create image
+docker build -t ubuntu:batch11 .
+
+docker run -it cid
+
+
+- run to create container
+
+docker run -d -p 82:80 c8acc6147f17
+
+
+--------------------------
+
+ENTRYPOINT vs CMD
+-------------------
+- for CMD
+
+--------------------------
+FROM ubuntu:16.04
+CMD echo " Welcome to docker"
+CMD echo " Welcome to devops learning!"
+------------------------------------
+
+ - for entry point
+---------------------------
+FROM ubuntu:16.04
+ENTRYPOINT echo "welcome to devops!"
+
+----------------------------
+
+docker networking
+=====================
+docker network ls
+
+---------------------------------
+NETWORK ID          NAME                DRIVER              SCOPE
+75c818090dde        bridge              bridge              local
+55097428d728        host                host                local
+ab7bb091f266        none                null                local
+
+----------------------------------
+
+docker network inspect network-id
+
+ex:
+docker network inspect 75c818090dde
+-------------------------------------
+
+docker run -itd --name=alpine1 alpine
+docker run -itd --name=alpine1 alpine
+
+docker attach cid of alpine1
+ping IP address of alpine
+
+- ping works
+
+- ping alpine2
+- ping wont work with container name as it use default bridge network
+
+Note: By default the container will use the "default bridge" network
+   - then container will communincate with IP address
+---------------------------------------------------
+create custom bridge network
+---------------------------
+docker network create --driver=bridge mynetwork1
+
+docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+75c818090dde        bridge              bridge              local
+55097428d728        host                host                local
+7b9d5e412815        mynetwork1          bridge              local
+ab7bb091f266        none                null                local
+
+
+docker run -itd --name=alpine1 --network=mynetwork1 alpine
+docker run -itd --name=alpine2 --network=mynetwork1 alpine
+docker run -itd --name=alpine3 --network=mynetwork1 alpine
+
+- connect to container
+docker attach cid of apline1
+
+ping ip of alpine 2
+- works
+
+ping ip of alpine 3
+- works
+
+
+ping name alpine 2
+- works
+
+ping name alpine 3
+- works
+-----------------
+
+
+- delete network
+
+docker network rm net1

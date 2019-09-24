@@ -449,3 +449,94 @@ ping name alpine 3
 - delete network
 
 docker network rm net1
+
+
+
+=========
+class -7
+=========
+
+
+Docker compose
+---------------
+- is tool for defining & running multi-container docker applications
+
+Step1
+---
+install docker-compose
+----------------------
+
+https://docs.docker.com/compose/install/
+1)
+a) first command
+sudo curl -L 
+
+"https://github.com/docker/compose/releases/download/1.24.1/docker-
+
+compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+2) second command
+sudo chmod +x /usr/local/bin/docker-compose
+
+or 
+
+pip install -u  docker-compose
+
+step2)
+-------
+check 
+------
+docker-compose --version
+-----------------------------
+
+step3
+------
+- file name should be docker-compose.yml
+---------------------------------
+version: "0"
+
+services:
+
+  web:
+    image: nginx
+    ports:
+      - "9090:80"
+
+  database:
+    image: redis
+---------------------------------
+
+step4 - check the validity of the file
+-----
+docker-compose config
+
+step4) start the service use
+-------
+docker-compose up -d
+
+step5) stop the service 
+-------
+docker-compose down
+
+
+step5) scale up/down the service 
+-------
+scale-up
+---------
+docker-compose up -d --scale <application-name>=5
+
+ex:
+docker-compose up -d --scale database=10
+
+scale-down
+---------
+docker-compose up -d --scale <application-name>=5
+
+ex:
+docker-compose up -d --scale database=5
+
+
+check one more example in github:
+---------------------------------
+https://github.com/vijayghub/docker-compose
+

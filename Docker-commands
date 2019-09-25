@@ -540,3 +540,103 @@ check one more example in github:
 ---------------------------------
 https://github.com/vijayghub/docker-compose
 
+
+
+=========
+class -7
+=========
+
+===============
+docker-swarm
+---------------
+A swarm is a group of machines that are running Docker and joined 
+
+into a cluster 
+
+Docker Swarm is a tool for Container Orchestration
+
+Let’s take an example
+You have 100 containers
+You need to do 
+- Health check on every container
+- Ensure all containers are up on every system
+- Scaling the containers up or down depending on the load
+- Adding updates/changes to all the containers
+
+Orchestration - managing and controlling multiple docker containers 
+
+as a single service
+
+Tools available - Docker Swarm, Kubernetes, Apache Mesos
+
+
+Pre-requisites
+1. Docker 1.13 or higher
+2. Docker Machine (pre installed for Docker for Windows and Docker 
+
+for Mac)
+
+- for Virtual box
+
+- install follow steps below 
+
+
+
+https://docs.docker.com/machine/install-machine/#installing-machine-
+
+directly
+
+- for more details check below link
+https://docs.docker.com/get-started/part4/
+
+===============================
+docker
+docker swarm
+docker swarm --help
+docker swarm init --advertise-addr 192.168.134.13
+
+--------------
+use play with docker
+--------------------
+https://labs.play-with-docker.com/
+
+- login id and pw for docker hub
+
+docker node --help
+docker node ls
+
+
+docker service
+docker service create --name alpine1 alpine:3.5 ping google.com
+dockers service ls
+
+docker node ls
+
+docker service ps alpine1
+
+docker service scale alpine1=5
+
+docker service ps alpine1
+
+
+docker service inspect alpine1
+
+docker service scale alpine1=5
+
+
+docker service create --replicas 5 --name alpinex1 alpine:3.6 ping 
+
+google.com
+
+
+docker service update --replicas 2 alpinex1
+
+
+- update the version
+docker service update --image alpine:3.7 alpinex1
+
+
+docker service rollback alpinex1
+
+
+docker swarm leave --force
